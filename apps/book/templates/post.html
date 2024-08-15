@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ block.super }} - Post {% endblock title %}
+
+{% block stylesheet %}
+    {{ block.super}}
+    <link rel="stylesheet" type="text/css" href="{% static "css/form.css" %}" />
+{% endblock stylesheet %}
+
+{% block content %}
+<h1 class="head">Share your book</h1>
+<div class="post-form">
+  <form method="post" action="{% url 'book-urls:book-post' %}">
+    {% csrf_token %}
+    <div class="form-element">
+        <label for="isbn_input">isbn:</label>
+        <input
+          id="isbn_input"
+          type="text"
+          name="isbn_input"
+          value=""
+          placeholder="Enter isbn"
+        />
+    </div>
+    <div class="form-element">
+      <label for="title_input">Title:</label>
+      <input
+        id="title_input"
+        type="text"
+        name="title_input"
+        value=""
+        placeholder="Enter title"
+      />
+    </div>
+    <div class="form-element">
+      <label for="pages_input">Pages:</label>
+      <input
+        id="pages_input"
+        type="number"
+        name="pages_input"
+        value=""
+        placeholder="Enter Page"
+      />
+    </div>
+    <div class="form-element">
+      <label for="description_textarea">Description:</label><br />
+      <textarea
+        id="description_textarea"
+        type="textarea"
+        name="description_textarea"
+        value=""
+        placeholder="Enter Description"
+      ></textarea>
+      <hr />
+      <div class="form-cat">Category</div>
+      <div>
+          <input id="cat_pl_radio" type="radio" value="pl" />
+          <label for="cat_pl_radio">Programming</label>
+      </div>
+      <div>
+          <input id="cat_art_radio" type="radio" value="db" />
+          <label for="cat_art_radio">Art</label>
+      </div>
+      <div>
+        <input id="cat_his_radio" type="radio" value="db" />
+        <label for="cat_his_radio">History</label>
+      </div>
+      <input type="submit" value="Submit" />
+    </div>
+
+  </form>
+</div>
+{% endblock content %}

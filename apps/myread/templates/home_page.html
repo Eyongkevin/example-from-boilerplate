@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}{{block.super}} - Home {% endblock title %}
+
+{% block content %}
+
+    <h1>Welcome to My Read App</h1>
+            
+    <p>{{reader_cnt}} total reader{% if reader_cnt > 1 %}s {%endif%}  and counting!</p>
+
+    <p>{{engaged_reader_cnt}} engaged reader{% if engaged_reader_cnt > 1%}s {%endif%} and counting!</p>
+
+    <h2>Books Count per Categoies</h2>
+    <ol>
+    {% for cat_cnt in cnt_per_cat %}
+        <li>{{cat_cnt.category}}: {{cat_cnt.cnt}}</li>
+    {% endfor %}
+    </ol>
+    <h2>We are proud of our {{books|length}} book{{books|pluralize}}</h2>
+    <ul>
+        {% for book in books %}
+            <li>{{book.title}}</li>
+        {% endfor %}
+    </ul>
+{% endblock content %}
+
